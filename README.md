@@ -1,4 +1,5 @@
-# asciify-image
+# asciify-image-CRGB(Char Red Green Blue)
+
 
 > Convert images to ASCII art without native dependencies
 
@@ -6,6 +7,17 @@ asciify-image allows you to convert images to ASCII art **without native
 dependencies**. This means that all you need to do is `npm install ascii-image`,
 instead of `brew`ing and `apt-get`ing other packages.
 
+## Data Type
+   ``` 
+   return cell[row][col]
+   
+   cell - array of CRGB
+   array[0] - char of ascii
+   array[1] - Red 0~255(Int)
+   array[1] - Green 0~255(Int)
+   array[1] - Blue 0~255(Int)
+   ```
+ 
 ## Features
 
 * Support for most common image types

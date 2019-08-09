@@ -78,9 +78,7 @@ var asciify_core = function(path, opts, callback) {
     // Resize to requested dimensions
     image.resize(new_dims[0], new_dims[1]);
 
-    var ascii = '';
-    if (!options.as_string) ascii = [];
-
+    const ascii = [];
     // Normalization for the returned intensity so that it maps to a char
     var norm  = (255 * 4 / num_c);
 
@@ -89,7 +87,7 @@ var asciify_core = function(path, opts, callback) {
     for (j = 0; j < image.bitmap.height; j++) {        // height
 
       // Add new array if type
-      if (!options.as_string) ascii.push([]);
+       ascii.push([]);
 
       for (i = 0; i < image.bitmap.width; i++) {       // width
         for (c = 0; c < options.c_ratio; c++) {   // character ratio
@@ -99,18 +97,13 @@ var asciify_core = function(path, opts, callback) {
           // Color character using
           if (options.color) {
             var clr = Jimp.intToRGBA(image.getPixelColor(i, j));
-            next = Couleurs.fg(next, clr.r, clr.g, clr.b);
+            next = [next, clr.r, clr.g, clr.b];
           }
 
-          if (options.as_string)
-            ascii += next;
-
-          else
             ascii[j].push(next);
         }
       }
 
-      if (options.as_string && j != image.bitmap.height - 1) ascii += '\n';
     }
 
     callback(null, ascii);
